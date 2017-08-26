@@ -1,9 +1,11 @@
+package Vistas;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in  the editor.
  */
-package Vistas;
+
 
 import Funciones.Config;
 import Funciones.conexion;
@@ -32,7 +34,7 @@ sentencias sen=new sentencias();
     public GestionProductos() {
         initComponents();
         this.setLocationRelativeTo(null);
-         conf.desTexto(new Object[]{txtCod,txtDes,txtCosto,txtPor,txtMayo,txtMino,txtStock,txtMarca});
+         conf.desTexto(new Object[]{txtCod,txtDes,txtCosto,txtPor,txtMayo,txtMino,txtStock,txtRuta});
          conf.desBoton(new Object[]{btnGrabarProducto,btnEditarProducto,btnEliminarProducto});
         
     }
@@ -47,6 +49,7 @@ sentencias sen=new sentencias();
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        grupoIva = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -68,19 +71,32 @@ sentencias sen=new sentencias();
         etiCodProducto5 = new javax.swing.JLabel();
         txtMayo = new javax.swing.JTextField();
         txtMino = new javax.swing.JTextField();
-        etiCodProducto6 = new javax.swing.JLabel();
-        txtMarca = new javax.swing.JTextField();
+        txtRuta = new javax.swing.JTextField();
         comboFamilia = new javax.swing.JComboBox();
         txtPor = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
-        btnSalida = new javax.swing.JButton();
         btnEliminarProducto = new javax.swing.JButton();
         btnGrabarProducto = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
         btnAgregarProveedor = new javax.swing.JButton();
         btnEditarProducto = new javax.swing.JButton();
+        btnEliminarProducto1 = new javax.swing.JButton();
         etiCodProducto7 = new javax.swing.JLabel();
         comboProveedor = new javax.swing.JComboBox();
+        etiCodProducto8 = new javax.swing.JLabel();
+        etiCodProducto9 = new javax.swing.JLabel();
+        jRadioButton2 = new javax.swing.JRadioButton();
+        jRadioButton3 = new javax.swing.JRadioButton();
+        etiCodProducto6 = new javax.swing.JLabel();
+        txtMarca1 = new javax.swing.JTextField();
+        btnAbrir = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        txtIva = new javax.swing.JTextField();
+        txtPrecioFinal = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        txtGanancia = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -114,7 +130,7 @@ sentencias sen=new sentencias();
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 960, -1));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/search.png"))); // NOI18N
@@ -137,34 +153,36 @@ sentencias sen=new sentencias();
         ));
         jScrollPane2.setViewportView(jTable1);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 620, 250));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 620, 210));
 
         etiCodProducto.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         etiCodProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenesMenu/cod.png"))); // NOI18N
         etiCodProducto.setText("Código");
-        getContentPane().add(etiCodProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 460, -1, -1));
+        getContentPane().add(etiCodProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 380, -1, -1));
 
         etiNomCobrador.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         etiNomCobrador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenesMenu/compraMenu.png"))); // NOI18N
         etiNomCobrador.setText("Descripción");
-        getContentPane().add(etiNomCobrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 460, -1, -1));
+        getContentPane().add(etiNomCobrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 380, -1, -1));
 
         txtCod.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        getContentPane().add(txtCod, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 460, 130, 30));
+        getContentPane().add(txtCod, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 380, 130, 30));
 
         txtDes.setFont(new java.awt.Font("Raleway", 3, 14)); // NOI18N
-        getContentPane().add(txtDes, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 460, 510, 30));
+        getContentPane().add(txtDes, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 380, 510, 30));
 
         etiCodProducto2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        etiCodProducto2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/precio.png"))); // NOI18N
         etiCodProducto2.setText("Precio Costo");
-        getContentPane().add(etiCodProducto2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 510, -1, 30));
+        getContentPane().add(etiCodProducto2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 430, -1, 30));
 
         txtStock.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        getContentPane().add(txtStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 560, 40, 30));
+        getContentPane().add(txtStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 480, 40, 30));
 
         etiCodProducto3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        etiCodProducto3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/porcentaj.png"))); // NOI18N
         etiCodProducto3.setText("Porc. Venta ");
-        getContentPane().add(etiCodProducto3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 510, 120, 30));
+        getContentPane().add(etiCodProducto3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 430, -1, 30));
 
         jComboBox1.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Todos", "Informática", "Limpieza", "Comestibles", "Librería" }));
@@ -173,55 +191,46 @@ sentencias sen=new sentencias();
                 jComboBox1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 90, 270, 50));
+        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 90, 280, 50));
 
         etiCodProducto1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        etiCodProducto1.setText("Existencia");
-        getContentPane().add(etiCodProducto1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 560, -1, -1));
+        etiCodProducto1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/document.png"))); // NOI18N
+        etiCodProducto1.setText("Imagen");
+        getContentPane().add(etiCodProducto1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 530, -1, -1));
 
         etiNomCobrador1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         etiNomCobrador1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/persons.png"))); // NOI18N
         etiNomCobrador1.setText("Proveedor");
-        getContentPane().add(etiNomCobrador1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 560, -1, -1));
+        getContentPane().add(etiNomCobrador1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 480, -1, -1));
 
         txtCosto.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        getContentPane().add(txtCosto, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 510, 130, 30));
+        getContentPane().add(txtCosto, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 430, 130, 30));
 
         etiCodProducto4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        etiCodProducto4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/precio.png"))); // NOI18N
         etiCodProducto4.setText("Mayorista");
-        getContentPane().add(etiCodProducto4, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 510, 100, 30));
+        getContentPane().add(etiCodProducto4, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 430, 100, 30));
 
         etiCodProducto5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        etiCodProducto5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/precio.png"))); // NOI18N
         etiCodProducto5.setText("Minorista");
-        getContentPane().add(etiCodProducto5, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 510, -1, 30));
+        getContentPane().add(etiCodProducto5, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 430, -1, 30));
 
         txtMayo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        getContentPane().add(txtMayo, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 510, 130, 30));
+        getContentPane().add(txtMayo, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 430, 130, 30));
 
         txtMino.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        getContentPane().add(txtMino, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 510, 120, 30));
+        getContentPane().add(txtMino, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 430, 120, 30));
 
-        etiCodProducto6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        etiCodProducto6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenesMenu/codigoMenu.png"))); // NOI18N
-        etiCodProducto6.setText("Familia");
-        getContentPane().add(etiCodProducto6, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 610, -1, -1));
+        txtRuta.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        getContentPane().add(txtRuta, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 530, 160, 30));
 
-        txtMarca.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        getContentPane().add(txtMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 560, 160, 30));
-
-        getContentPane().add(comboFamilia, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 610, 60, 30));
+        getContentPane().add(comboFamilia, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 530, 130, 30));
 
         txtPor.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        getContentPane().add(txtPor, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 510, 40, 30));
+        getContentPane().add(txtPor, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 430, 40, 30));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Opciones", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Century Gothic", 1, 14))); // NOI18N
-
-        btnSalida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenesMenu/exitMenu.png"))); // NOI18N
-        btnSalida.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalidaActionPerformed(evt);
-            }
-        });
 
         btnEliminarProducto.setFont(new java.awt.Font("Raleway", 0, 14)); // NOI18N
         btnEliminarProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/borrar.png"))); // NOI18N
@@ -273,49 +282,148 @@ sentencias sen=new sentencias();
             }
         });
 
+        btnEliminarProducto1.setFont(new java.awt.Font("Raleway", 0, 14)); // NOI18N
+        btnEliminarProducto1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/borrar.png"))); // NOI18N
+        btnEliminarProducto1.setText("PROVEEEDORES");
+        btnEliminarProducto1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnEliminarProducto1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarProducto1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(17, 17, 17)
                 .addComponent(btnAgregarProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(btnEditarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnGrabarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnEliminarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnSalida, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(136, 136, 136))
+                .addComponent(btnEliminarProducto1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 21, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnAgregarProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnEditarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnGrabarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnEliminarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(btnSalida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 11, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAgregarProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEditarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnGrabarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEliminarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEliminarProducto1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 720, 920, 110));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 610, 920, 100));
 
         etiCodProducto7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         etiCodProducto7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenesMenu/codigoMenu.png"))); // NOI18N
         etiCodProducto7.setText(" Marca");
-        getContentPane().add(etiCodProducto7, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 560, -1, -1));
+        getContentPane().add(etiCodProducto7, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 480, -1, -1));
 
-        getContentPane().add(comboProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 560, 330, 30));
+        getContentPane().add(comboProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 480, 330, 30));
+
+        etiCodProducto8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        etiCodProducto8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/porcentaj.png"))); // NOI18N
+        etiCodProducto8.setText("IVA");
+        getContentPane().add(etiCodProducto8, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 530, -1, -1));
+
+        etiCodProducto9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        etiCodProducto9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenesMenu/codigoMenu.png"))); // NOI18N
+        etiCodProducto9.setText("Familia");
+        getContentPane().add(etiCodProducto9, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 530, -1, -1));
+
+        grupoIva.add(jRadioButton2);
+        jRadioButton2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jRadioButton2.setText("10%");
+        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 530, 60, 30));
+
+        grupoIva.add(jRadioButton3);
+        jRadioButton3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jRadioButton3.setText("5%");
+        getContentPane().add(jRadioButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 530, 60, 30));
+
+        etiCodProducto6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        etiCodProducto6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/caja.png"))); // NOI18N
+        etiCodProducto6.setText("Existencia");
+        getContentPane().add(etiCodProducto6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 480, -1, -1));
+
+        txtMarca1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        getContentPane().add(txtMarca1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 480, 160, 30));
+
+        btnAbrir.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnAbrir.setText("Abrir");
+        getContentPane().add(btnAbrir, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 530, 140, 30));
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel3.setText("IVA:");
+
+        txtIva.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+
+        txtPrecioFinal.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel4.setText("Precio Final (+IVA):");
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel5.setText("Ganancia:");
+
+        txtGanancia.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtIva, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtPrecioFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtGanancia, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(17, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtIva)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtPrecioFinal)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtGanancia))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap())
+        );
+
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 570, 650, 40));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -357,17 +465,16 @@ sentencias sen=new sentencias();
     }//GEN-LAST:event_formWindowOpened
 
     private void btnAgregarProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarProveedorActionPerformed
-         conf.habTexto(new Object[]{txtCod,txtDes,txtCosto,txtPor,txtMayo,txtMino,txtStock,txtMarca});
+         conf.habTexto(new Object[]{txtCod,txtDes,txtCosto,txtPor,txtMayo,txtMino,txtStock,txtRuta});
     }//GEN-LAST:event_btnAgregarProveedorActionPerformed
 
-    private void btnSalidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalidaActionPerformed
-        int mensaje= JOptionPane.showConfirmDialog(this,"¿Deseas cerrar esta ventana?","Salir",
-            JOptionPane.YES_NO_OPTION,
-            JOptionPane.QUESTION_MESSAGE);
-        if(mensaje == JOptionPane.YES_OPTION) {
-            this.dispose();
-        }
-    }//GEN-LAST:event_btnSalidaActionPerformed
+    private void btnEliminarProducto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarProducto1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEliminarProducto1ActionPerformed
+
+    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -386,14 +493,16 @@ sentencias sen=new sentencias();
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GestionProveedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GestionProductos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GestionProveedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GestionProductos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GestionProveedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GestionProductos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GestionProveedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GestionProductos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
@@ -406,12 +515,13 @@ sentencias sen=new sentencias();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAbrir;
     private javax.swing.JButton btnAgregarProveedor;
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnEditarProducto;
     private javax.swing.JButton btnEliminarProducto;
+    private javax.swing.JButton btnEliminarProducto1;
     private javax.swing.JButton btnGrabarProducto;
-    private javax.swing.JButton btnSalida;
     private javax.swing.JComboBox comboFamilia;
     private javax.swing.JComboBox comboProveedor;
     private javax.swing.JLabel etiCodProducto;
@@ -422,23 +532,36 @@ sentencias sen=new sentencias();
     private javax.swing.JLabel etiCodProducto5;
     private javax.swing.JLabel etiCodProducto6;
     private javax.swing.JLabel etiCodProducto7;
+    private javax.swing.JLabel etiCodProducto8;
+    private javax.swing.JLabel etiCodProducto9;
     private javax.swing.JLabel etiNomCobrador;
     private javax.swing.JLabel etiNomCobrador1;
+    private javax.swing.ButtonGroup grupoIva;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField txtCod;
     private javax.swing.JTextField txtCosto;
     private javax.swing.JTextField txtDes;
-    private javax.swing.JTextField txtMarca;
+    private javax.swing.JTextField txtGanancia;
+    private javax.swing.JTextField txtIva;
+    private javax.swing.JTextField txtMarca1;
     private javax.swing.JTextField txtMayo;
     private javax.swing.JTextField txtMino;
     private javax.swing.JTextField txtPor;
+    private javax.swing.JTextField txtPrecioFinal;
+    private javax.swing.JTextField txtRuta;
     private javax.swing.JTextField txtStock;
     // End of variables declaration//GEN-END:variables
 
