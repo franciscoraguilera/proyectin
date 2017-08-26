@@ -1,0 +1,162 @@
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (malloc) failed to allocate 1048576 bytes for AllocateHeap
+# Possible reasons:
+#   The system is out of physical RAM or swap space
+#   In 32 bit mode, the process size limit was hit
+# Possible solutions:
+#   Reduce memory load on the system
+#   Increase physical memory or swap space
+#   Check if swap backing store is full
+#   Use 64 bit Java on a 64 bit OS
+#   Decrease Java heap size (-Xmx/-Xms)
+#   Decrease number of Java threads
+#   Decrease Java thread stack sizes (-Xss)
+#   Set larger code cache with -XX:ReservedCodeCacheSize=
+# This output file may be truncated or incomplete.
+#
+#  Out of Memory Error (memory/allocation.inline.hpp:61), pid=9348, tid=9168
+#
+# JRE version:  (8.0_51-b16) (build )
+# Java VM: Java HotSpot(TM) 64-Bit Server VM (25.51-b03 mixed mode windows-amd64 compressed oops)
+# Failed to write core dump. Minidumps are not enabled by default on client versions of Windows
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00000000021ae000):  JavaThread "Unknown thread" [_thread_in_vm, id=9168, stack(0x0000000000790000,0x0000000000890000)]
+
+Stack: [0x0000000000790000,0x0000000000890000]
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [jvm.dll+0x32b4ca]
+
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+
+Other Threads:
+
+=>0x00000000021ae000 (exited) JavaThread "Unknown thread" [_thread_in_vm, id=9168, stack(0x0000000000790000,0x0000000000890000)]
+
+VM state:not at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+Heap:
+ PSYoungGen      total 18944K, used 327K [0x00000000eb380000, 0x00000000ec880000, 0x0000000100000000)
+  eden space 16384K, 2% used [0x00000000eb380000,0x00000000eb3d1ec8,0x00000000ec380000)
+  from space 2560K, 0% used [0x00000000ec600000,0x00000000ec600000,0x00000000ec880000)
+  to   space 2560K, 0% used [0x00000000ec380000,0x00000000ec380000,0x00000000ec600000)
+ ParOldGen       total 44032K, used 0K [0x00000000c1a00000, 0x00000000c4500000, 0x00000000eb380000)
+  object space 44032K, 0% used [0x00000000c1a00000,0x00000000c1a00000,0x00000000c4500000)
+ Metaspace       used 770K, capacity 1092K, committed 1152K, reserved 1060864K
+  class space    used 75K, capacity 384K, committed 384K, reserved 1048576K
+
+Card table byte_map: [0x0000000011570000,0x0000000011770000] byte_map_base: 0x0000000010f63000
+
+Marking Bits: (ParMarkBitMap*) 0x000000006fd14040
+ Begin Bits: [0x0000000011ac0000, 0x0000000012a58000)
+ End Bits:   [0x0000000012a58000, 0x00000000139f0000)
+
+Polling page: 0x0000000000750000
+
+CodeCache: size=245760Kb used=327Kb max_used=327Kb free=245432Kb
+ bounds [0x00000000021b0000, 0x0000000002420000, 0x00000000111b0000]
+ total_blobs=56 nmethods=0 adapters=37
+ compilation: enabled
+
+Compilation events (0 events):
+No events
+
+GC Heap History (0 events):
+No events
+
+Deoptimization events (0 events):
+No events
+
+Internal exceptions (0 events):
+No events
+
+Events (10 events):
+Event: 0.087 loading class java/lang/Short
+Event: 0.087 loading class java/lang/Short done
+Event: 0.087 loading class java/lang/Integer
+Event: 0.088 loading class java/lang/Integer done
+Event: 0.088 loading class java/lang/Long
+Event: 0.088 loading class java/lang/Long done
+Event: 0.090 loading class java/lang/NullPointerException
+Event: 0.090 loading class java/lang/NullPointerException done
+Event: 0.090 loading class java/lang/ArithmeticException
+Event: 0.090 loading class java/lang/ArithmeticException done
+
+
+Dynamic libraries:
+0x00007ff69b070000 - 0x00007ff69b0a7000 	C:\Program Files\Java\jdk1.8.0_51\bin\java.exe
+0x00007ffc075d0000 - 0x00007ffc0777d000 	C:\Windows\SYSTEM32\ntdll.dll
+0x00007ffc07490000 - 0x00007ffc075ce000 	C:\Windows\system32\KERNEL32.DLL
+0x00007ffbf20b0000 - 0x00007ffbf20e3000 	C:\Program Files\AVAST Software\Avast\x64\aswhooka.dll
+0x00007ffc04920000 - 0x00007ffc04a35000 	C:\Windows\system32\KERNELBASE.dll
+0x00007ffc032b0000 - 0x00007ffc0333e000 	C:\Windows\system32\apphelp.dll
+0x00007ffbf9d40000 - 0x00007ffbf9d93000 	C:\Windows\AppPatch\AppPatch64\AcGenral.DLL
+0x00007ffc06c80000 - 0x00007ffc06d2a000 	C:\Windows\system32\msvcrt.dll
+0x00007ffc04c20000 - 0x00007ffc04c4e000 	C:\Windows\system32\SspiCli.dll
+0x00007ffc07280000 - 0x00007ffc072d4000 	C:\Windows\system32\SHLWAPI.dll
+0x00007ffc06560000 - 0x00007ffc066d7000 	C:\Windows\system32\USER32.dll
+0x00007ffc072f0000 - 0x00007ffc07484000 	C:\Windows\system32\ole32.dll
+0x00007ffc04ee0000 - 0x00007ffc06409000 	C:\Windows\system32\SHELL32.dll
+0x00007ffc03cb0000 - 0x00007ffc03cd1000 	C:\Windows\SYSTEM32\USERENV.dll
+0x00007ffc07080000 - 0x00007ffc0712a000 	C:\Windows\system32\ADVAPI32.dll
+0x00007ffbf8e50000 - 0x00007ffbf8e6e000 	C:\Windows\SYSTEM32\MPR.dll
+0x00007ffc06410000 - 0x00007ffc06550000 	C:\Windows\system32\RPCRT4.dll
+0x00007ffc04c50000 - 0x00007ffc04ca9000 	C:\Windows\SYSTEM32\sechost.dll
+0x00007ffc06960000 - 0x00007ffc06b72000 	C:\Windows\SYSTEM32\combase.dll
+0x00007ffc07130000 - 0x00007ffc0727b000 	C:\Windows\system32\GDI32.dll
+0x00007ffc046f0000 - 0x00007ffc04705000 	C:\Windows\SYSTEM32\profapi.dll
+0x00007ffc02c80000 - 0x00007ffc02d32000 	C:\Windows\SYSTEM32\SHCORE.dll
+0x00007ffc06df0000 - 0x00007ffc06e26000 	C:\Windows\system32\IMM32.DLL
+0x00007ffc04d80000 - 0x00007ffc04ed2000 	C:\Windows\system32\MSCTF.dll
+0x00007ffc02480000 - 0x00007ffc026fb000 	C:\Windows\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.9600.18006_none_623f33d3ecbe86e8\COMCTL32.dll
+0x000000006f430000 - 0x000000006f502000 	C:\Program Files\Java\jdk1.8.0_51\jre\bin\msvcr100.dll
+0x000000006f510000 - 0x000000006fd93000 	C:\Program Files\Java\jdk1.8.0_51\jre\bin\server\jvm.dll
+0x00007ffc01a90000 - 0x00007ffc01a99000 	C:\Windows\SYSTEM32\WSOCK32.dll
+0x00007ffbff9b0000 - 0x00007ffbff9d2000 	C:\Windows\SYSTEM32\WINMM.dll
+0x00007ffbfeba0000 - 0x00007ffbfebaa000 	C:\Windows\SYSTEM32\VERSION.dll
+0x00007ffc072e0000 - 0x00007ffc072e7000 	C:\Windows\system32\PSAPI.DLL
+0x00007ffc06900000 - 0x00007ffc0695a000 	C:\Windows\system32\WS2_32.dll
+0x00007ffbff980000 - 0x00007ffbff9aa000 	C:\Windows\SYSTEM32\WINMMBASE.dll
+0x00007ffc06b80000 - 0x00007ffc06b89000 	C:\Windows\system32\NSI.dll
+0x00007ffc047c0000 - 0x00007ffc0480f000 	C:\Windows\SYSTEM32\cfgmgr32.dll
+0x00007ffc03500000 - 0x00007ffc03528000 	C:\Windows\SYSTEM32\DEVOBJ.dll
+0x000000006f3e0000 - 0x000000006f3ef000 	C:\Program Files\Java\jdk1.8.0_51\jre\bin\verify.dll
+0x000000006f3b0000 - 0x000000006f3d9000 	C:\Program Files\Java\jdk1.8.0_51\jre\bin\java.dll
+0x000000006f390000 - 0x000000006f3a6000 	C:\Program Files\Java\jdk1.8.0_51\jre\bin\zip.dll
+0x00007ffbfb710000 - 0x00007ffbfb899000 	C:\Windows\SYSTEM32\dbghelp.dll
+
+VM Arguments:
+jvm_args: -Dfile.encoding=UTF-8 
+java_command: Vistas.LoginUI
+java_class_path (initial): C:\Program Files\NetBeans 8.0.2\java\modules\ext\AbsoluteLayout.jar;C:\Program Files\Java\jdk1.8.0_51\db\lib\derby.jar;C:\Program Files\Java\jdk1.8.0_51\db\lib\derbyclient.jar;C:\Program Files\Java\jdk1.8.0_51\db\lib\derbynet.jar;C:\Program Files\NetBeans 8.0.2\ide\modules\ext\mysql-connector-java-5.1.23-bin.jar;C:\Users\user\Desktop\PendriveLila\Para proyecto final\Proyectos\Codigo Sistema ventas + librerias\Codigo Sistema ventas + librerias\Codigo del proyecto\JREPORT\libreria\JARs Para la librería JasperReports\commons-beanutils-1.8.2.jar;C:\Users\user\Desktop\PendriveLila\Para proyecto final\Proyectos\Codigo Sistema ventas + librerias\Codigo Sistema ventas + librerias\Codigo del proyecto\JREPORT\libreria\JARs Para la librería JasperReports\commons-collections-3.2.1.jar;C:\Users\user\Desktop\PendriveLila\Para proyecto final\Proyectos\Codigo Sistema ventas + librerias\Codigo Sistema ventas + librerias\Codigo del proyecto\JREPORT\libreria\JARs Para la librería JasperReports\commons-digester-2.1.jar;C:\Users\user\Desktop\PendriveLila\Para proyecto final\Proyectos\Codigo Sistema ventas + librerias\Codigo Sistema ventas + librerias\Codigo del proyecto\JREPORT\libreria\JARs Para la librería JasperReports\commons-javaflow-20060411.jar;C:\Users\user\Desktop\PendriveLila\Para proyecto final\Proyectos\Codigo Sistema ventas + librerias\Codigo Sistema ventas + librerias\Codigo del proyecto\JREPORT\libreria\JARs Para la librería JasperReports\commons-logging-1.1.1.jar;C:\Users\user\Desktop\PendriveLila\Para proyecto final\Proyectos\Codigo Sistema ventas + librerias\Codigo Sistema ventas + librerias\Codigo del proyecto\JREPORT\libreria\JARs Para la librería JasperReports\groovy-all-1.7.5.jar;C:\Users\user\Desktop\PendriveLila\Para proyecto final\Proyectos\Codigo Sistema ventas + librerias\Codigo Sistema ventas + librerias\Codigo del proyecto\JREPORT\libreria\JARs Para la librería JasperReports\iText-2.1.7.jar;C:\Users\user\Desktop\PendriveLila\Para
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+PATH=C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Common Files\Intel\Shared Files\cpp\bin\Intel64;C:\Program Files (x86)\Intel\TXE Components\TCS\;C:\Program Files\Intel\TXE Components\TCS\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Windows Live\Shared;C:\Program Files (x86)\GtkSharp\2.12\bin;C:\Program Files (x86)\MySQL\MySQL Utilities 1.6\;C:\Users\user\AppData\Local\Programs\Python\Python35-32\Scripts\;C:\Users\user\AppData\Local\Programs\Python\Python35-32\
+USERNAME=user
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 55 Stepping 8, GenuineIntel
+
+
+
+---------------  S Y S T E M  ---------------
+
+OS: Windows 8.1 , 64 bit Build 9600 (6.3.9600.17415)
+
+CPU:total 2 (2 cores per cpu, 1 threads per core) family 6 model 55 stepping 8, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, clmul, erms, 3dnowpref, tsc, tscinvbit
+
+Memory: 4k page, physical 4087152k(714852k free), swap 7232880k(4228k free)
+
+vm_info: Java HotSpot(TM) 64-Bit Server VM (25.51-b03) for windows-amd64 JRE (1.8.0_51-b16), built on Jun  8 2015 18:03:07 by "java_re" with MS VC++ 10.0 (VS2010)
+
+time: Sat Aug 19 14:47:37 2017
+elapsed time: 0 seconds (0d 0h 0m 0s)
+
