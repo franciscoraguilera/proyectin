@@ -11,11 +11,19 @@ import Funciones.Config;
 import Funciones.conexion;
 import Funciones.sentencias;
 import java.beans.PropertyVetoException;
+import java.io.File;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import static javax.swing.JInternalFrame.IS_MAXIMUM_PROPERTY;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -34,9 +42,12 @@ sentencias sen=new sentencias();
     public GestionProductos() {
         initComponents();
         this.setLocationRelativeTo(null);
-         conf.desTexto(new Object[]{txtCod,txtDes,txtCosto,txtPor,txtMayo,txtMino,txtStock,txtRuta});
-         conf.desBoton(new Object[]{btnGrabarProducto,btnEditarProducto,btnEliminarProducto});
-        
+         conf.desTexto(new Object[]{txtMarca,txtCod,txtDes,txtCosto,txtPor,txtMayo,txtMino,txtStock,txtRuta,txtIva,txtGanancia,txtPrecioFinal});
+         conf.desBoton(new Object[]{btnGrabar,btnEditar,btnEliminar,btnAbrir});
+         radCinco.setEnabled(false);
+         radDiez.setEnabled(false);
+         comboFamilia.setEnabled(false);
+         comboProveedor.setEnabled(false);
     }
     
 
@@ -75,20 +86,20 @@ sentencias sen=new sentencias();
         comboFamilia = new javax.swing.JComboBox();
         txtPor = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
-        btnEliminarProducto = new javax.swing.JButton();
-        btnGrabarProducto = new javax.swing.JButton();
-        btnCancel = new javax.swing.JButton();
-        btnAgregarProveedor = new javax.swing.JButton();
-        btnEditarProducto = new javax.swing.JButton();
-        btnEliminarProducto1 = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
+        btnGrabar = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
+        btnNuevo = new javax.swing.JButton();
+        btnEditar = new javax.swing.JButton();
+        btnProveedores = new javax.swing.JButton();
         etiCodProducto7 = new javax.swing.JLabel();
         comboProveedor = new javax.swing.JComboBox();
         etiCodProducto8 = new javax.swing.JLabel();
         etiCodProducto9 = new javax.swing.JLabel();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
+        radDiez = new javax.swing.JRadioButton();
+        radCinco = new javax.swing.JRadioButton();
         etiCodProducto6 = new javax.swing.JLabel();
-        txtMarca1 = new javax.swing.JTextField();
+        txtMarca = new javax.swing.JTextField();
         btnAbrir = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -97,6 +108,7 @@ sentencias sen=new sentencias();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         txtGanancia = new javax.swing.JTextField();
+        lblFoto = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -225,70 +237,71 @@ sentencias sen=new sentencias();
         txtRuta.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         getContentPane().add(txtRuta, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 530, 160, 30));
 
-        getContentPane().add(comboFamilia, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 530, 130, 30));
+        comboFamilia.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        getContentPane().add(comboFamilia, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 530, 160, 30));
 
         txtPor.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         getContentPane().add(txtPor, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 430, 40, 30));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Opciones", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Century Gothic", 1, 14))); // NOI18N
 
-        btnEliminarProducto.setFont(new java.awt.Font("Raleway", 0, 14)); // NOI18N
-        btnEliminarProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/borrar.png"))); // NOI18N
-        btnEliminarProducto.setText("ELIMINAR");
-        btnEliminarProducto.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnEliminarProducto.addActionListener(new java.awt.event.ActionListener() {
+        btnEliminar.setFont(new java.awt.Font("Raleway", 0, 14)); // NOI18N
+        btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/borrar.png"))); // NOI18N
+        btnEliminar.setText("ELIMINAR");
+        btnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarProductoActionPerformed(evt);
+                btnEliminarActionPerformed(evt);
             }
         });
 
-        btnGrabarProducto.setFont(new java.awt.Font("Raleway", 0, 14)); // NOI18N
-        btnGrabarProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/guardar.png"))); // NOI18N
-        btnGrabarProducto.setText("GRABAR");
-        btnGrabarProducto.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnGrabarProducto.addActionListener(new java.awt.event.ActionListener() {
+        btnGrabar.setFont(new java.awt.Font("Raleway", 0, 14)); // NOI18N
+        btnGrabar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/guardar.png"))); // NOI18N
+        btnGrabar.setText("GRABAR");
+        btnGrabar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnGrabar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGrabarProductoActionPerformed(evt);
+                btnGrabarActionPerformed(evt);
             }
         });
 
-        btnCancel.setFont(new java.awt.Font("Raleway", 0, 14)); // NOI18N
-        btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenesMenu/CErrar2.png"))); // NOI18N
-        btnCancel.setText("CANCELAR");
-        btnCancel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnCancel.addActionListener(new java.awt.event.ActionListener() {
+        btnCancelar.setFont(new java.awt.Font("Raleway", 0, 14)); // NOI18N
+        btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenesMenu/CErrar2.png"))); // NOI18N
+        btnCancelar.setText("CANCELAR");
+        btnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelActionPerformed(evt);
+                btnCancelarActionPerformed(evt);
             }
         });
 
-        btnAgregarProveedor.setFont(new java.awt.Font("Raleway", 0, 14)); // NOI18N
-        btnAgregarProveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/inserto.png"))); // NOI18N
-        btnAgregarProveedor.setText("NUEVO");
-        btnAgregarProveedor.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnAgregarProveedor.addActionListener(new java.awt.event.ActionListener() {
+        btnNuevo.setFont(new java.awt.Font("Raleway", 0, 14)); // NOI18N
+        btnNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/inserto.png"))); // NOI18N
+        btnNuevo.setText("NUEVO");
+        btnNuevo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregarProveedorActionPerformed(evt);
+                btnNuevoActionPerformed(evt);
             }
         });
 
-        btnEditarProducto.setFont(new java.awt.Font("Raleway", 0, 14)); // NOI18N
-        btnEditarProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/modificar.png"))); // NOI18N
-        btnEditarProducto.setText("EDITAR");
-        btnEditarProducto.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnEditarProducto.addActionListener(new java.awt.event.ActionListener() {
+        btnEditar.setFont(new java.awt.Font("Raleway", 0, 14)); // NOI18N
+        btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/modificar.png"))); // NOI18N
+        btnEditar.setText("EDITAR");
+        btnEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditarProductoActionPerformed(evt);
+                btnEditarActionPerformed(evt);
             }
         });
 
-        btnEliminarProducto1.setFont(new java.awt.Font("Raleway", 0, 14)); // NOI18N
-        btnEliminarProducto1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/borrar.png"))); // NOI18N
-        btnEliminarProducto1.setText("PROVEEEDORES");
-        btnEliminarProducto1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnEliminarProducto1.addActionListener(new java.awt.event.ActionListener() {
+        btnProveedores.setFont(new java.awt.Font("Raleway", 0, 14)); // NOI18N
+        btnProveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/borrar.png"))); // NOI18N
+        btnProveedores.setText("PROVEEEDORES");
+        btnProveedores.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnProveedores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarProducto1ActionPerformed(evt);
+                btnProveedoresActionPerformed(evt);
             }
         });
 
@@ -298,17 +311,17 @@ sentencias sen=new sentencias();
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(17, 17, 17)
-                .addComponent(btnAgregarProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnEditarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnGrabarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnGrabar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnEliminarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnEliminarProducto1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(19, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -316,12 +329,12 @@ sentencias sen=new sentencias();
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(0, 11, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAgregarProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEditarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnGrabarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEliminarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEliminarProducto1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnGrabar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -332,6 +345,7 @@ sentencias sen=new sentencias();
         etiCodProducto7.setText(" Marca");
         getContentPane().add(etiCodProducto7, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 480, -1, -1));
 
+        comboProveedor.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         getContentPane().add(comboProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 480, 330, 30));
 
         etiCodProducto8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -344,31 +358,36 @@ sentencias sen=new sentencias();
         etiCodProducto9.setText("Familia");
         getContentPane().add(etiCodProducto9, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 530, -1, -1));
 
-        grupoIva.add(jRadioButton2);
-        jRadioButton2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jRadioButton2.setText("10%");
-        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+        grupoIva.add(radDiez);
+        radDiez.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        radDiez.setText("10%");
+        radDiez.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton2ActionPerformed(evt);
+                radDiezActionPerformed(evt);
             }
         });
-        getContentPane().add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 530, 60, 30));
+        getContentPane().add(radDiez, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 530, 60, 30));
 
-        grupoIva.add(jRadioButton3);
-        jRadioButton3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jRadioButton3.setText("5%");
-        getContentPane().add(jRadioButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 530, 60, 30));
+        grupoIva.add(radCinco);
+        radCinco.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        radCinco.setText("5%");
+        getContentPane().add(radCinco, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 530, 60, 30));
 
         etiCodProducto6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         etiCodProducto6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/caja.png"))); // NOI18N
         etiCodProducto6.setText("Existencia");
         getContentPane().add(etiCodProducto6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 480, -1, -1));
 
-        txtMarca1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        getContentPane().add(txtMarca1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 480, 160, 30));
+        txtMarca.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        getContentPane().add(txtMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 480, 160, 30));
 
         btnAbrir.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnAbrir.setText("Abrir");
+        btnAbrir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAbrirActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnAbrir, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 530, 140, 30));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -424,28 +443,65 @@ sentencias sen=new sentencias();
         );
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 570, 650, 40));
+        getContentPane().add(lblFoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 150, 280, 210));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         GestionProductos ge=new GestionProductos();
         ge.pack();
         ge.setVisible(true);
         dispose();
-    }//GEN-LAST:event_btnCancelActionPerformed
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private void btnEditarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarProductoActionPerformed
+    
+    
+    private void cargaComboProveedor() throws SQLException{
+    try {
+        Connection con = null;
+        Class.forName("com.mysql.jdbc.Driver");
+        String url="jdbc:mysql://localhost/utilsoft";
+        con=DriverManager.getConnection(url,"root","");
+        Statement st = con.createStatement();
+        ResultSet rs = st.executeQuery("SELECT nom_proveedor FROM proveedor");
+        comboProveedor.removeAllItems();
+        comboProveedor.addItem("--- Seleccionar ---");
+        while(rs.next()){
+            comboProveedor.addItem(rs.getString(1));
+        }
+    } catch (ClassNotFoundException ex) {
+        Logger.getLogger(GestionProductos.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    }
+    private void cargaComboFamilia() throws SQLException{
+        try {
+        Connection con = null;
+        Class.forName("com.mysql.jdbc.Driver");
+        String url="jdbc:mysql://localhost/utilsoft";
+        con=DriverManager.getConnection(url,"root","");
+        Statement st = con.createStatement();
+        ResultSet rs = st.executeQuery("SELECT descrip_familia FROM familia");
+        comboFamilia.removeAllItems();
+        comboFamilia.addItem("--- Seleccionar ---");
+        while(rs.next()){
+            comboFamilia.addItem(rs.getString(1));
+        }
+    } catch (ClassNotFoundException ex) {
+        Logger.getLogger(GestionProductos.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    }
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnEditarProductoActionPerformed
+    }//GEN-LAST:event_btnEditarActionPerformed
 
-    private void btnGrabarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGrabarProductoActionPerformed
+    private void btnGrabarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGrabarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnGrabarProductoActionPerformed
+    }//GEN-LAST:event_btnGrabarActionPerformed
 
-    private void btnEliminarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarProductoActionPerformed
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnEliminarProductoActionPerformed
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
@@ -464,17 +520,51 @@ sentencias sen=new sentencias();
     }
     }//GEN-LAST:event_formWindowOpened
 
-    private void btnAgregarProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarProveedorActionPerformed
-         conf.habTexto(new Object[]{txtCod,txtDes,txtCosto,txtPor,txtMayo,txtMino,txtStock,txtRuta});
-    }//GEN-LAST:event_btnAgregarProveedorActionPerformed
+    private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
+    try {
+        cargaComboFamilia();
+    } catch (SQLException ex) {
+        Logger.getLogger(GestionProductos.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    try {
+        cargaComboProveedor();
+    } catch (SQLException ex) {
+        Logger.getLogger(GestionProductos.class.getName()).log(Level.SEVERE, null, ex);
+    }
+         conf.habTexto(new Object[]{txtCod,txtDes,txtCosto,txtPor,txtMayo,txtMino,txtStock,txtRuta,txtMarca});
+         radCinco.setEnabled(true);
+         radDiez.setEnabled(true);
+         comboFamilia.setEnabled(true);
+         comboProveedor.setEnabled(true);
+         conf.habBoton(new Object [] {btnAbrir,btnGrabar,btnCancelar});
+    }//GEN-LAST:event_btnNuevoActionPerformed
 
-    private void btnEliminarProducto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarProducto1ActionPerformed
+    private void btnProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProveedoresActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnEliminarProducto1ActionPerformed
+    }//GEN-LAST:event_btnProveedoresActionPerformed
 
-    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+    private void radDiezActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radDiezActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton2ActionPerformed
+    }//GEN-LAST:event_radDiezActionPerformed
+
+    private void btnAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirActionPerformed
+ JFileChooser jf = new JFileChooser();
+        FileNameExtensionFilter fil = new FileNameExtensionFilter("JPG, PNG & GIF","jpg","png","gif");
+        jf.setFileFilter(fil);
+        jf.setCurrentDirectory(new File("Fotos"));
+        int el = jf.showOpenDialog(this);
+        if(el == JFileChooser.APPROVE_OPTION){
+            txtRuta.setText(jf.getSelectedFile().getAbsolutePath());
+            lblFoto.setIcon(new ImageIcon(txtRuta.getText()));
+        }       
+        
+        
+        
+        
+        
+        
+        
+    }//GEN-LAST:event_btnAbrirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -516,12 +606,12 @@ sentencias sen=new sentencias();
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAbrir;
-    private javax.swing.JButton btnAgregarProveedor;
-    private javax.swing.JButton btnCancel;
-    private javax.swing.JButton btnEditarProducto;
-    private javax.swing.JButton btnEliminarProducto;
-    private javax.swing.JButton btnEliminarProducto1;
-    private javax.swing.JButton btnGrabarProducto;
+    private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnEditar;
+    private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnGrabar;
+    private javax.swing.JButton btnNuevo;
+    private javax.swing.JButton btnProveedores;
     private javax.swing.JComboBox comboFamilia;
     private javax.swing.JComboBox comboProveedor;
     private javax.swing.JLabel etiCodProducto;
@@ -546,17 +636,18 @@ sentencias sen=new sentencias();
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel lblFoto;
+    private javax.swing.JRadioButton radCinco;
+    private javax.swing.JRadioButton radDiez;
     private javax.swing.JTextField txtCod;
     private javax.swing.JTextField txtCosto;
     private javax.swing.JTextField txtDes;
     private javax.swing.JTextField txtGanancia;
     private javax.swing.JTextField txtIva;
-    private javax.swing.JTextField txtMarca1;
+    private javax.swing.JTextField txtMarca;
     private javax.swing.JTextField txtMayo;
     private javax.swing.JTextField txtMino;
     private javax.swing.JTextField txtPor;
